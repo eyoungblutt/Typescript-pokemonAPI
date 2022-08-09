@@ -4,6 +4,7 @@ import { displayPokemonAbilities, displayPokemonStatistics, displayPokemonName, 
 
 let searchQuery: HTMLElement | null = document.getElementById("search");
 console.log("hello");
+console.log(searchQuery);
 let objectArr: any = [];
 
 //--------------------------------------------------------------------------------

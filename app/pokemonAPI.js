@@ -13,6 +13,7 @@ const pokemonData_1 = require("./pokemonData");
 const clearFields_1 = require("./clearFields");
 const displayPokemon_1 = require("./displayPokemon");
 let searchQuery = document.getElementById("search");
+console.log("hello");
 console.log(searchQuery);
 let objectArr = [];
 //--------------------------------------------------------------------------------
