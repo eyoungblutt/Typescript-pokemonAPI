@@ -10,21 +10,21 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const pokemonData_1 = require("./pokemonData");
-const clearFields_1 = require("./clearFields");
 const displayPokemon_1 = require("./displayPokemon");
 let searchQuery = document.getElementById("search");
-console.log("hello");
-console.log(searchQuery);
+console.log("happy8");
 let objectArr = [];
 //--------------------------------------------------------------------------------
 function callAPI() {
-    document
-        .getElementById("searchButton")
-        .addEventListener("click", () => __awaiter(this, void 0, void 0, function* () {
-        let response = yield fetch(`https://pokeapi.co/api/v2/pokemon/${searchQuery.innerText.toLowerCase()}`);
+    const button = document.getElementById("searchButton");
+    button === null || button === void 0 ? void 0 : button.addEventListener("click", () => __awaiter(this, void 0, void 0, function* () {
+        console.log("happy");
+        let response = yield fetch(`https://pokeapi.co/api/v2/pokemon/ditto`);
         if (response.ok === true) {
             let data = yield response.json();
+            console.log(data);
             document.getElementById("errorMessage").innerText = "";
+            console.log(searchQuery.value);
             (0, displayPokemon_1.displayPokemonImage)((0, pokemonData_1.getPokemonImage)(data));
             (0, displayPokemon_1.displayPokemonName)((0, pokemonData_1.getPokemonName)(data));
             (0, displayPokemon_1.displayPokemonAbilities)((0, pokemonData_1.getPokemonAbilities)(data));
@@ -47,27 +47,29 @@ function callAPI() {
 ;
 callAPI();
 //------------------------------------------------------------------------------
-let outLocalStorage = window.localStorage.getItem("objectArr");
-outLocalStorage.forEach(function (localStorageData) {
-    let pokemonCard = document.getElementById("pokemonCard");
-    pokemonCard.innerHTML += `<img src="${localStorageData.image}" class="pokemonImage">`;
-    pokemonCard.innerHTML += `<h3 class="pokemonName">Name: </h3> `;
-    pokemonCard.innerHTML += `<p class ="nameInformation"> ${localStorageData.pokemonName}</p>`;
-    pokemonCard.innerHTML += `<h3 class="abilitiesHeading"> Abilities: </h3>`;
-    for (let i = 0; i < localStorageData.abilities.length; i++) {
-        let abName = localStorageData.abilities[i].ability.name;
-        pokemonCard.innerHTML += `<p class="pokemonAbilities">${abName}</p>`;
-    }
-    pokemonCard.innerHTML += `<h3 class="statsHeading"> Statistics: </h3>`;
-    for (let i = 0; i < localStorageData.statistics.length; i++) {
-        let statsName = localStorageData.statistics[i].stat.name;
-        let statsAmount = localStorageData.statistics[i].base_stat;
-        pokemonCard.innerHTML += `<p class="pokemonAbilities">${statsName}: ${statsAmount}</p>`;
-    }
-});
+// let outLocalStorage: any = window.localStorage.getItem("objectArr") ;
+// console.log(window.localStorage.getItem("objectArr")); 
+// console.log(outLocalStorage);
+// outLocalStorage!.forEach( function(localStorageData: any): void {
+//   let pokemonCard: HTMLElement | null = document.getElementById("pokemonCard");
+//   pokemonCard!.innerHTML! += `<img src="${localStorageData.image}" class="pokemonImage">`;
+//   pokemonCard!.innerHTML += `<h3 class="pokemonName">Name: </h3> `;
+//   pokemonCard!.innerHTML += `<p class ="nameInformation"> ${localStorageData.pokemonName}</p>`;
+//   pokemonCard!.innerHTML += `<h3 class="abilitiesHeading"> Abilities: </h3>`;
+//     for (let i = 0; i < localStorageData.abilities.length; i++) {
+//       let abName = localStorageData.abilities[i].ability.name;
+//       pokemonCard!.innerHTML += `<p class="pokemonAbilities">${abName}</p>`;
+//     }
+//   pokemonCard!.innerHTML += `<h3 class="statsHeading"> Statistics: </h3>`;
+//     for (let i = 0; i < localStorageData.statistics.length; i++) {
+//       let statsName = localStorageData.statistics[i].stat.name;
+//       let statsAmount = localStorageData.statistics[i].base_stat;
+//       pokemonCard!.innerHTML += `<p class="pokemonAbilities">${statsName}: ${statsAmount}</p>`;
+//     }
+//   });
 //------------------------------------------------------------------------------
-let clearAll = document.getElementById("clearAll");
-clearAll.addEventListener("click", function () {
-    (0, clearFields_1.clearFields)();
-});
+// let clearAll = document.getElementById("clearAll");
+//   clearAll!.addEventListener("click", function () {
+//     clearFields();
+//   });
 //---------------------------------------------------------------------------

@@ -1,18 +1,18 @@
-let getPokemonImage = (data: object): object => {
+let getPokemonImage = (data: {sprites: { front_default: string}}): string => {
   console.log(data);
   return data.sprites.front_default;
  }
 
-  let getPokemonName = (data: Array<object>) => {
+  let getPokemonName = (data: {name: string}): string => {
   return data.name ;
 }
 
- let getPokemonStats = (data: any) => {
+ let getPokemonStats = (data: {stats: Array<object>}): Array<object> => {
   return data.stats;
 
   }
 
-   let getPokemonAbilities = (data: any) => {
+   let getPokemonAbilities = (data: {abilities: Array<object>}): Array<object> => {
     return data.abilities;
     }
 
