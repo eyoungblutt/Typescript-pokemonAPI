@@ -3,8 +3,6 @@ import { clearFields } from "./clearFields";
 import { displayPokemonAbilities, displayPokemonStatistics, displayPokemonName, displayPokemonImage,} from './displayPokemon';
 
 let searchQuery= document.getElementById("search") as HTMLInputElement | null;
-console.log("happy8");
-
 let objectArr: Array<object> = [];
 
 //--------------------------------------------------------------------------------
@@ -12,15 +10,13 @@ function callAPI() {
   const button = document.getElementById("searchButton");
 
     button?.addEventListener("click", async () => { // GK: How will you unit test all this code if it's inside a click event listener?
-      console.log("happy");
       let response = await fetch(
-        `https://pokeapi.co/api/v2/pokemon/ditto`
+        `https://pokeapi.co/api/v2/pokemon/${searchQuery!.value}`
       );
       if (response.ok === true) {
         let data = await response.json();
-console.log(data) ;
         document.getElementById("errorMessage")!.innerText = "";
-        console.log(searchQuery!.value);
+        
         displayPokemonImage(getPokemonImage(data));
         displayPokemonName(getPokemonName(data));
         displayPokemonAbilities(getPokemonAbilities(data));
@@ -46,36 +42,35 @@ callAPI();
 //------------------------------------------------------------------------------
 
 
-// let outLocalStorage: any = window.localStorage.getItem("objectArr") ;
-// console.log(window.localStorage.getItem("objectArr")); 
-// console.log(outLocalStorage);
-// outLocalStorage!.forEach( function(localStorageData: any): void {
-//   let pokemonCard: HTMLElement | null = document.getElementById("pokemonCard");
-//   pokemonCard!.innerHTML! += `<img src="${localStorageData.image}" class="pokemonImage">`;
+let outLocalStorage = JSON.parse(window.localStorage.getItem("objectArr")!);
 
-//   pokemonCard!.innerHTML += `<h3 class="pokemonName">Name: </h3> `;
-//   pokemonCard!.innerHTML += `<p class ="nameInformation"> ${localStorageData.pokemonName}</p>`;
+outLocalStorage!.forEach( function(localStorageData: any): void {
+  let pokemonCard: HTMLElement | null = document.getElementById("pokemonCard");
+  pokemonCard!.innerHTML += `<img src="${localStorageData.image}" class="pokemonImage">`;
 
-//   pokemonCard!.innerHTML += `<h3 class="abilitiesHeading"> Abilities: </h3>`;
-//     for (let i = 0; i < localStorageData.abilities.length; i++) {
-//       let abName = localStorageData.abilities[i].ability.name;
-//       pokemonCard!.innerHTML += `<p class="pokemonAbilities">${abName}</p>`;
-//     }
+  pokemonCard!.innerHTML += `<h3 class="pokemonName">Name: </h3> `;
+  pokemonCard!.innerHTML += `<p class ="nameInformation"> ${localStorageData.pokemonName}</p>`;
 
-//   pokemonCard!.innerHTML += `<h3 class="statsHeading"> Statistics: </h3>`;
-//     for (let i = 0; i < localStorageData.statistics.length; i++) {
-//       let statsName = localStorageData.statistics[i].stat.name;
-//       let statsAmount = localStorageData.statistics[i].base_stat;
-//       pokemonCard!.innerHTML += `<p class="pokemonAbilities">${statsName}: ${statsAmount}</p>`;
-//     }
-//   });
+  pokemonCard!.innerHTML += `<h3 class="abilitiesHeading"> Abilities: </h3>`;
+    for (let i = 0; i < localStorageData.abilities.length; i++) {
+      let abName = localStorageData.abilities[i].ability.name;
+      pokemonCard!.innerHTML += `<p class="pokemonAbilities">${abName}</p>`;
+    }
+
+  pokemonCard!.innerHTML += `<h3 class="statsHeading"> Statistics: </h3>`;
+    for (let i = 0; i < localStorageData.statistics.length; i++) {
+      let statsName = localStorageData.statistics[i].stat.name;
+      let statsAmount = localStorageData.statistics[i].base_stat;
+      pokemonCard!.innerHTML += `<p class="pokemonAbilities">${statsName}: ${statsAmount}</p>`;
+    }
+  });
 
 //------------------------------------------------------------------------------
 
-// let clearAll = document.getElementById("clearAll");
-//   clearAll!.addEventListener("click", function () {
-//     clearFields();
-//   });
+let clearAll = document.getElementById("clearAll");
+  clearAll!.addEventListener("click", function () {
+    clearFields();
+  });
 
 
 //---------------------------------------------------------------------------
