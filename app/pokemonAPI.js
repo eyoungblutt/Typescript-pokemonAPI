@@ -13,13 +13,14 @@ const pokemonData_1 = require("./pokemonData");
 const clearFields_1 = require("./clearFields");
 const displayPokemon_1 = require("./displayPokemon");
 let searchQuery = document.getElementById("search");
+console.log(searchQuery);
 let objectArr = [];
 //--------------------------------------------------------------------------------
 function callAPI() {
     document
         .getElementById("searchButton")
         .addEventListener("click", () => __awaiter(this, void 0, void 0, function* () {
-        let response = yield fetch(`https://pokeapi.co/api/v2/pokemon/${searchQuery.value.toLowerCase()}`);
+        let response = yield fetch(`https://pokeapi.co/api/v2/pokemon/${searchQuery.innerText.toLowerCase()}`);
         if (response.ok === true) {
             let data = yield response.json();
             document.getElementById("errorMessage").innerText = "";
@@ -27,11 +28,11 @@ function callAPI() {
             (0, displayPokemon_1.displayPokemonName)((0, pokemonData_1.getPokemonName)(data));
             (0, displayPokemon_1.displayPokemonAbilities)((0, pokemonData_1.getPokemonAbilities)(data));
             (0, displayPokemon_1.displayPokemonStatistics)((0, pokemonData_1.getPokemonStats)(data));
-            let newPokemonData = (image, pokemonName, abilities, statistics) => {
-                image = data.sprites.front_default,
-                    pokemonName = data.name,
-                    abilities = data.abilities,
-                    statistics = data.stats;
+            let newPokemonData = {
+                image: data.sprites.front_default,
+                pokemonName: data.name,
+                abilities: data.abilities,
+                statistics: data.stats
             };
             objectArr.push(newPokemonData);
             localStorage.setItem("objectArr", JSON.stringify(objectArr));
@@ -45,7 +46,7 @@ function callAPI() {
 ;
 callAPI();
 //------------------------------------------------------------------------------
-let outLocalStorage = JSON.parse(window.localStorage.getItem("objectArr"));
+let outLocalStorage = window.localStorage.getItem("objectArr");
 outLocalStorage.forEach(function (localStorageData) {
     let pokemonCard = document.getElementById("pokemonCard");
     pokemonCard.innerHTML += `<img src="${localStorageData.image}" class="pokemonImage">`;
@@ -65,9 +66,7 @@ outLocalStorage.forEach(function (localStorageData) {
 });
 //------------------------------------------------------------------------------
 let clearAll = document.getElementById("clearAll");
-window.onload = function () {
-    clearAll.addEventListener("click", function () {
-        (0, clearFields_1.clearFields)();
-    });
-};
+clearAll.addEventListener("click", function () {
+    (0, clearFields_1.clearFields)();
+});
 //---------------------------------------------------------------------------

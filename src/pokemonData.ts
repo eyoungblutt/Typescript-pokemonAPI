@@ -1,8 +1,9 @@
-let getPokemonImage = (data: any) => {
+let getPokemonImage = (data: object): object => {
+  console.log(data);
   return data.sprites.front_default;
  }
 
-  let getPokemonName = (data: any) => {
+  let getPokemonName = (data: Array<object>) => {
   return data.name ;
 }
 

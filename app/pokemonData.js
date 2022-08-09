@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getPokemonAbilities = exports.getPokemonStats = exports.getPokemonName = exports.getPokemonImage = void 0;
 let getPokemonImage = (data) => {
+    console.log(data);
     return data.sprites.front_default;
 };
 exports.getPokemonImage = getPokemonImage;

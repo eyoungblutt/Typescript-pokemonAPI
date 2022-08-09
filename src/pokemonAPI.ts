@@ -2,7 +2,8 @@ import { getPokemonImage, getPokemonName, getPokemonStats, getPokemonAbilities} 
 import { clearFields } from "./clearFields";
 import { displayPokemonAbilities, displayPokemonStatistics, displayPokemonName, displayPokemonImage,} from './displayPokemon';
 
-let searchQuery = document.getElementById("search");
+let searchQuery: HTMLElement | null = document.getElementById("search");
+console.log("hello");
 let objectArr: any = [];
 
 //--------------------------------------------------------------------------------
@@ -11,7 +12,7 @@ function callAPI() {
     .getElementById("searchButton")!
     .addEventListener("click", async () => { // GK: How will you unit test all this code if it's inside a click event listener?
       let response = await fetch(
-        `https://pokeapi.co/api/v2/pokemon/${searchQuery.value.toLowerCase()}`
+        `https://pokeapi.co/api/v2/pokemon/${searchQuery!.innerText.toLowerCase()}`
       );
       if (response.ok === true) {
         let data = await response.json();
@@ -23,11 +24,11 @@ function callAPI() {
         displayPokemonAbilities(getPokemonAbilities(data));
         displayPokemonStatistics(getPokemonStats(data));
 
-        let newPokemonData = (image: string, pokemonName: string, abilities: string, statistics: string) => {
-          image= data.sprites.front_default,
-          pokemonName= data.name,
-          abilities= data.abilities,
-          statistics= data.stats
+        let newPokemonData = {
+          image: data.sprites.front_default,
+          pokemonName: data.name,
+          abilities: data.abilities,
+          statistics: data.stats
         };
 
         objectArr.push(newPokemonData);
@@ -43,9 +44,9 @@ callAPI();
 //------------------------------------------------------------------------------
 
 
-let outLocalStorage = JSON.parse( window.localStorage.getItem("objectArr")); 
+let outLocalStorage: string | null = window.localStorage.getItem("objectArr"); 
 
-outLocalStorage.forEach( function(localStorageData: any) {
+outLocalStorage!.forEach( function(localStorageData: any) {
   let pokemonCard: HTMLElement | null = document.getElementById("pokemonCard");
   pokemonCard!.innerHTML += `<img src="${localStorageData.image}" class="pokemonImage">`;
 
@@ -69,10 +70,9 @@ outLocalStorage.forEach( function(localStorageData: any) {
 //------------------------------------------------------------------------------
 
 let clearAll = document.getElementById("clearAll");
-window.onload = function () { // GK: Why add this event listener onLoad?
   clearAll!.addEventListener("click", function () {
     clearFields();
   });
-};
+
 
 //---------------------------------------------------------------------------
