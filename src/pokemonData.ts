@@ -11,7 +11,6 @@ let getPokemonStats = (data: {stats: object[]}): object[] => {
 }
 
 let getPokemonAbilities = (data: {abilities: object[]}) => {
-  console.log(data.abilities);
   return data.abilities;
 }
 

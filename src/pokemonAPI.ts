@@ -9,7 +9,7 @@ let objectArr: object[] = [];
 function callAPI() {
   const button: HTMLElement | null = document.getElementById("searchButton");
 
-    button?.addEventListener("click", async () => { // GK: How will you unit test all this code if it's inside a click event listener?
+    button?.addEventListener("click", async () => { 
       let response: Response = await fetch(
         `https://pokeapi.co/api/v2/pokemon/${searchQuery!.value}`
       );
@@ -47,16 +47,13 @@ let outLocalStorage = JSON.parse(window.localStorage.getItem("objectArr")!);
 outLocalStorage!.forEach( function(localStorageData: any): void {
   let pokemonCard: HTMLElement | null = document.getElementById("pokemonCard");
   pokemonCard!.innerHTML += `<img src="${localStorageData.image}" class="pokemonImage">`;
-
   pokemonCard!.innerHTML += `<h3 class="pokemonName">Name: </h3> `;
   pokemonCard!.innerHTML += `<p class ="nameInformation"> ${localStorageData.pokemonName}</p>`;
-
   pokemonCard!.innerHTML += `<h3 class="abilitiesHeading"> Abilities: </h3>`;
     for (let i = 0; i < localStorageData.abilities.length; i++) {
       let abName = localStorageData.abilities[i].ability.name;
       pokemonCard!.innerHTML += `<p class="pokemonAbilities">${abName}</p>`;
     }
-
   pokemonCard!.innerHTML += `<h3 class="statsHeading"> Statistics: </h3>`;
     for (let i = 0; i < localStorageData.statistics.length; i++) {
       let statsName = localStorageData.statistics[i].stat.name;

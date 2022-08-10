@@ -14,7 +14,6 @@ let getPokemonStats = (data) => {
 };
 exports.getPokemonStats = getPokemonStats;
 let getPokemonAbilities = (data) => {
-    console.log(data.abilities);
     return data.abilities;
 };
 exports.getPokemonAbilities = getPokemonAbilities;

@@ -20,7 +20,6 @@ let displayPokemonImage = (pokemonDetails: string) => {
   }
 
 let displayPokemonName = (pokemonDetails: string) => {
-  console.log(pokemonDetails);
   let newHeading = document.createElement("h3");
   newHeading.className = "pokemonName";
   newHeading.innerText = "Name: ";
@@ -33,7 +32,6 @@ let displayPokemonName = (pokemonDetails: string) => {
 }
 
 let displayPokemonStatistics =(pokemonDetails: any) => {
-  console.log(pokemonDetails);
   let statsHeading = document.createElement("h3");
   statsHeading.className = "statsHeading";
   statsHeading.innerText = "Statistics: "
