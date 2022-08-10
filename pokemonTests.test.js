@@ -1,4 +1,4 @@
-import { getPokemonImage, getPokemonName, getPokemonStats, getPokemonAbilities, newPokemonData} from './pokemonData.js';
+import { getPokemonImage, getPokemonName, getPokemonStats, getPokemonAbilities, newPokemonData} from './app/pokemonData';
 
 describe("getPokemonStats", () => {
   test("it should get the pokemon stats from data", () => {

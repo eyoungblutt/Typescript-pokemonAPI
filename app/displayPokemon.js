@@ -2,16 +2,16 @@ define(["require", "exports"], function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.displayPokemonImage = exports.displayPokemonName = exports.displayPokemonStatistics = exports.displayPokemonAbilities = void 0;
-    let displayPokemonAbilities = (pokemonDetials) => {
+    let displayPokemonAbilities = (pokemonDetails) => {
         let abilitiesHeading = document.createElement("h3");
         abilitiesHeading.className = "abilitiesHeading";
         abilitiesHeading.innerText = "Abilities: ";
         document.getElementById("pokemonCard").appendChild(abilitiesHeading);
-        for (let i = 0; i < pokemonDetials.length; i++) {
+        for (let i = 0; i < pokemonDetails.length; i++) {
             let newAbility = document.createElement("p");
             newAbility.className = "pokemonAbilities";
-            newAbility.innerText = pokemonDetials[i].ability.name;
-            document.getElementById("pokemonCard").appendChild(newAbility); // GK: This function still knows about something outside itself?
+            newAbility.innerText = pokemonDetails[i].ability.name;
+            document.getElementById("pokemonCard").appendChild(newAbility);
         }
     };
     exports.displayPokemonAbilities = displayPokemonAbilities;
@@ -23,6 +23,7 @@ define(["require", "exports"], function (require, exports) {
     };
     exports.displayPokemonImage = displayPokemonImage;
     let displayPokemonName = (pokemonDetails) => {
+        console.log(pokemonDetails);
         let newHeading = document.createElement("h3");
         newHeading.className = "pokemonName";
         newHeading.innerText = "Name: ";
@@ -34,6 +35,7 @@ define(["require", "exports"], function (require, exports) {
     };
     exports.displayPokemonName = displayPokemonName;
     let displayPokemonStatistics = (pokemonDetails) => {
+        console.log(pokemonDetails);
         let statsHeading = document.createElement("h3");
         statsHeading.className = "statsHeading";
         statsHeading.innerText = "Statistics: ";

@@ -2,15 +2,15 @@ import { getPokemonImage, getPokemonName, getPokemonStats, getPokemonAbilities} 
 import { clearFields } from "./clearFields";
 import { displayPokemonAbilities, displayPokemonStatistics, displayPokemonName, displayPokemonImage,} from './displayPokemon';
 
-let searchQuery= document.getElementById("search") as HTMLInputElement | null;
-let objectArr: Array<object> = [];
+let searchQuery: HTMLInputElement | null = document.getElementById("search") as HTMLInputElement | null;
+let objectArr: object[] = [];
 
 //--------------------------------------------------------------------------------
 function callAPI() {
-  const button = document.getElementById("searchButton");
+  const button: HTMLElement | null = document.getElementById("searchButton");
 
     button?.addEventListener("click", async () => { // GK: How will you unit test all this code if it's inside a click event listener?
-      let response = await fetch(
+      let response: Response = await fetch(
         `https://pokeapi.co/api/v2/pokemon/${searchQuery!.value}`
       );
       if (response.ok === true) {
