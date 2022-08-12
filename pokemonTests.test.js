@@ -1,4 +1,4 @@
-import { getPokemonImage, getPokemonName, getPokemonStats, getPokemonAbilities, newPokemonData} from './app/pokemonData';
+import { getPokemonImage, getPokemonName, getPokemonStats, getPokemonAbilities} from './app/pokemonData';
 
 describe("getPokemonStats", () => {
   test("it should get the pokemon stats from data", () => {
@@ -43,12 +43,12 @@ describe("getPokemonAbilities", () => {
   })
 })
 
-describe("newPokemonData", () => {
-  test("it should dispmay object from data given", () => {
-   let pokemonData = {image: "www.image.com", pokemonName: "joe", abilities: "50", statistics: "jumping" };
+// describe("newPokemonData", () => {
+//   test("it should dispmay object from data given", () => {
+//    let pokemonData = {image: "www.image.com", pokemonName: "joe", abilities: "50", statistics: "jumping" };
     
-    expect(pokemonData.image).toEqual( "www.image.com" );
-    expect(pokemonData.pokemonName).toEqual( "joe" );
+//     expect(pokemonData.image).toEqual( "www.image.com" );
+//     expect(pokemonData.pokemonName).toEqual( "joe" );
 
-  });
-});
+//   });
+// });

@@ -2,7 +2,7 @@ import { getPokemonImage, getPokemonName, getPokemonStats, getPokemonAbilities} 
 import { clearFields } from "./clearFields";
 import { displayPokemonAbilities, displayPokemonStatistics, displayPokemonName, displayPokemonImage,} from './displayPokemon';
 
-let searchQuery: HTMLInputElement | null = document.getElementById("search") as HTMLInputElement | null;
+let searchQuery: HTMLInputElement | null = document.getElementById("search") as HTMLInputElement |  null;
 let objectArr: object[] = [];
 
 //--------------------------------------------------------------------------------
