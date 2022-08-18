@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getPokemonAbilities = exports.getPokemonStats = exports.getPokemonName = exports.getPokemonImage = void 0;
+exports.callAPI = exports.newPokemonData = exports.getPokemonAbilities = exports.getPokemonStats = exports.getPokemonName = exports.getPokemonImage = void 0;
 let getPokemonImage = (data) => {
     return data.sprites.front_default;
 };
@@ -17,3 +17,17 @@ let getPokemonAbilities = (data) => {
     return data.abilities;
 };
 exports.getPokemonAbilities = getPokemonAbilities;
+let newPokemonData = (data) => {
+    let newPokemonData = {
+        image: data.sprites.front_default,
+        pokemonName: data.name,
+        abilities: data.abilities,
+        statistics: data.stats
+    };
+    return newPokemonData;
+};
+exports.newPokemonData = newPokemonData;
+function callAPI(searchQuery) {
+    return `https://pokeapi.co/api/v2/pokemon/${searchQuery.value.toLowerCase()}`;
+}
+exports.callAPI = callAPI;

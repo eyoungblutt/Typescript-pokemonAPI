@@ -15,34 +15,21 @@ const displayPokemon_1 = require("./displayPokemon");
 let searchQuery = document.getElementById("search");
 let objectArr = [];
 //--------------------------------------------------------------------------------
-function callAPI() {
-    const button = document.getElementById("searchButton");
-    button === null || button === void 0 ? void 0 : button.addEventListener("click", () => __awaiter(this, void 0, void 0, function* () {
-        let response = yield fetch(`https://pokeapi.co/api/v2/pokemon/${searchQuery.value}`);
-        if (response.ok === true) {
-            let data = yield response.json();
-            document.getElementById("errorMessage").innerText = "";
-            (0, displayPokemon_1.displayPokemonImage)((0, pokemonData_1.getPokemonImage)(data));
-            (0, displayPokemon_1.displayPokemonName)((0, pokemonData_1.getPokemonName)(data));
-            (0, displayPokemon_1.displayPokemonAbilities)((0, pokemonData_1.getPokemonAbilities)(data));
-            (0, displayPokemon_1.displayPokemonStatistics)((0, pokemonData_1.getPokemonStats)(data));
-            let newPokemonData = {
-                image: data.sprites.front_default,
-                pokemonName: data.name,
-                abilities: data.abilities,
-                statistics: data.stats
-            };
-            objectArr.push(newPokemonData);
-            localStorage.setItem("objectArr", JSON.stringify(objectArr));
-        }
-        else {
-            document.getElementById("errorMessage").innerText =
-                "Oops! Please double check your entry is a pokemon name or index number and try again.";
-        }
-    }));
-}
-;
-callAPI();
+const button = document.getElementById("searchButton");
+button.addEventListener("click", () => __awaiter(void 0, void 0, void 0, function* () {
+    let response = yield fetch((0, pokemonData_1.callAPI)(searchQuery));
+    if (response.ok === true) {
+        document.getElementById("errorMessage").innerText = "";
+        let data = yield response.json();
+        document.getElementById("pokemonCard").appendChild((0, displayPokemon_1.appendData)(data));
+        objectArr.push((0, pokemonData_1.newPokemonData)(data));
+        localStorage.setItem("objectArr", JSON.stringify(objectArr));
+    }
+    else {
+        document.getElementById("errorMessage").innerText =
+            "Oops! Please double check your entry is a pokemon name or index number and try again.";
+    }
+}));
 //------------------------------------------------------------------------------
 let outLocalStorage = JSON.parse(window.localStorage.getItem("objectArr"));
 outLocalStorage.forEach(function (localStorageData) {
